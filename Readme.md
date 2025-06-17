@@ -76,26 +76,17 @@ npm install @vitejs/plugin-react --save-dev
 npm install d3
 ```
 
-4) Crear la estructura de carpetas
-```bash
-mkdir src\components 
-mkdir src\pages 
-mkdir src\services 
-mkdir src\hooks 
-mkdir src\contexts
-```
-
-5) Instalar todas las dependencias del proyecto
+4) Instalar todas las dependencias del proyecto
 ```bash
 npm install
 ```
 
-6) Levantar el servidor de desarrollo
+5) Levantar el servidor de desarrollo
 ```bash
 npm run dev
 ```
 
-7) Verificar que la aplicación funciona en:
+6) Verificar que la aplicación funciona en:
 http://localhost:5173
 
 ### Notas importantes:
@@ -222,3 +213,36 @@ Si necesitas optimizar las dependencias:
 ```bash
 npm run build
 ```
+
+## Endpoints de la API
+
+### Endpoints de Usuario
+
+| Método | Endpoint | Acción | Controlador | Testing |
+|--------|----------|---------|-------------|----------|
+| POST | `api/register` | Crear usuario | AuthController.register | AuthManagementTest.php |
+| POST | `api/login` | Autenticar usuario | AuthController.login | AuthManagementTest.php |
+| POST | `api/logout` | Cerrar sesión | AuthController.logout | AuthManagementTest.php |
+| GET | `api/me` | Leer datos propios | AuthController.me | AuthManagementTest.php |
+| GET | `api/users` | Mostrar todos los usuarios | UserController.index | UserManagementTest.php |
+| GET | `api/users/{id}` | Leer usuario específico | UserController.show | UserManagementTest.php |
+| PUT | `api/users/{id}` | Actualizar usuario | UserController.update | UserManagementTest.php |
+| DELETE | `api/users/{id}` | Eliminar usuario | UserController.destroy | UserManagementTest.php |
+
+### Endpoints de Verbos
+
+| Método | Endpoint | Acción | Controlador | Testing |
+|--------|----------|---------|-------------|----------|
+| GET | `api/groups` | Mostrar todos los grupos | Group.index | GroupControllerTest.php |
+| GET | `api/groups/{id}` | Mostrar familias en un grupo | Group.show | GroupControllerTest.php |
+| GET | `api/families` | Mostrar todas las familias | Family.index | FamilyControllerTest.php |
+| GET | `api/families/{id}` | Mostrar subfamilias en una familia | Family.show | FamilyControllerTest.php |
+| GET | `api/subfamilies` | Mostrar todas las subfamilias | Subfamily.index | SubFamilyControllerTest.php |
+| GET | `api/subfamilies/{id}` | Mostrar verbos en una subfamilia | Subfamily.show | SubfamilyControllerTest.php |
+| GET | `api/verbs` | Mostrar todos los verbos | Verb.index | VerbControllerTest.php |
+| GET | `api/verbs/{id}` | Mostrar un verbo específico | Verb.show | VerbControllerTest.php |
+
+**Notas**:
+- Todos los endpoints requieren autenticación excepto `api/register` y `api/login`
+- Los endpoints de verbos devuelven datos filtrados según el nivel del usuario
+- Las respuestas incluyen colores en formato hexadecimal para la visualización en gráficos sunburst

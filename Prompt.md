@@ -4,6 +4,11 @@ Soy estudiante de fullstack.
 - Debes saber que nunca he trabajando con React por lo que empezaremos por que me expliques desde cero todos los pasos necesarios para realizar el proyecto, empezando por cómo instalarlo y también cómo renderizar el frontend de forma que pueda probarlo.
 Cuando hayamos superado este paso pasaremos al siguiente.
 - También debes saber que el ejercicio de clase consiste en, además de desarrollar el frontend tal como te he dicho, realizar una investigación sobre diferentes modelos de IA para ver cuál es más competente y eficaz para el desarrollo de código. Al realizar mi entrega, además del frontend, haré una presentación con mis conclusiones sobre los retos encontrados en el proyecto y cómo los hemos superado, la idoneidad de las respuestas recibidas y los resultados obtenidos con cada IA.
-Esto quiere decir que voy a iniciar una conversación con este prompt con Claude Sonnet 4, una agente entrenado en Javascript React PHP SQL+ de Chat GPT, con DeepSeek 
+Esto quiere decir que voy a iniciar esta misma conversación con este prompt con Claude Sonnet 4 en VSC, con Cursor y con DeepSeek 
+
+Sobre el proyecto:
+- En el readme veras los requisitos técnicos y académicos
+- El frontend deberá mostrar los datos obtenidos de los diferentes endpoints en graficos sunburts. Los colores se reciben de las respuestas json de cada endpoint.
+
 
 
