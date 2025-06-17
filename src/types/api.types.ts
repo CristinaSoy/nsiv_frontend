@@ -1,50 +1,126 @@
 // Tipos de autenticación
 export interface AuthResponse {
+  user: AuthUser;
   access_token: string;
   token_type: string;
-  expires_at: string;
+  message: string;
 }
 
-export interface User {
+export interface AuthUser {
   id: number;
   name: string;
+  level: string;
   email: string;
-  level: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// Base color interface
+export interface ColorInfo {
+  border: string;
+  bg: string;
+  shadow: string;
 }
 
 // Tipos para la estructura jerárquica
-export interface Verb {
-  id: number;
-  name: string;
+export interface VerbListItem {
+  group: string;
+  family: string;
+  subfamily: string;
+  details: string;
+  all_forms: string;
+  spanish: string;
+}
+
+export interface VerbDetail {
+  all_forms: string;
+  base: string;
+  present: string;
+  past: string;
+  participle: string;
+  fonetics_present: string;
+  fonetics_past: string;
+  fonetics_participle: string;
+  details: string;
   level: number;
-  description: string;
-  subfamily_id: number;
+  spanish: string;
 }
 
 export interface Subfamily {
   id: number;
   name: string;
-  color: string;
   description: string;
-  family_id: number;
-  verbs?: Verb[];
+  sample: string;
+  comments: string;
+  colors: ColorInfo;
+  total: number;
 }
 
 export interface Family {
   id: number;
   name: string;
-  color: string;
   description: string;
-  group_id: number;
-  subfamilies?: Subfamily[];
+  sample: string;
+  comments: string;
+  colors: ColorInfo;
+  total: number;
 }
 
 export interface Group {
   id: number;
   name: string;
-  color: string;
+  sample: string;
   description: string;
-  families?: Family[];
+  total: number;
+  comments: string;
+  taxonomy: string;
+  colors: ColorInfo;
+}
+
+// Interfaces de respuesta
+export interface GroupsResponse {
+  groups: Group[];
+  userLevel: number;
+}
+
+export interface GroupShowResponse {
+  group: Group;
+  families: Family[];
+}
+
+export interface FamiliesResponse {
+  families: Family[];
+}
+
+export interface FamilyShowResponse {
+  family: Family;
+  subfamilies: Subfamily[];
+}
+
+export interface SubfamiliesResponse {
+  subfamilies: Subfamily[];
+}
+
+export interface SubfamilyShowResponse {
+  subfamily: Subfamily;
+  verbs: Pick<VerbDetail, 'all_forms' | 'spanish'>[];
+}
+
+export interface VerbsResponse {
+  verbs: VerbListItem[];
+}
+
+export interface VerbShowResponse {
+  group: string;
+  family: string;
+  subfamily: string;
+  verb: VerbDetail;
+}
+
+// Error interface
+export interface ApiError {
+  message: string;
+  errors?: Record<string, string[]>;
 }
 
 // Configuración de la API
