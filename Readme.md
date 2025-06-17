@@ -1,4 +1,4 @@
-## Enunciat
+## Requeriments académics
 
 ### Desenvolupar
 
@@ -7,6 +7,12 @@
 **Nivell 2** connectar frontend amb api
 
 **Nivell 3** deckeritzar l'Api o l'entrega de nivell 1
+
+## Tecnologia aplicada
+
+1. PHP 8.2
+2. Laravel 12
+3. Passport 13
 
 
 ### Treball amb la IA
@@ -43,6 +49,8 @@ Formulació de prompts, iteracions, registre, URLs si convé
 **Presentació**
 **Reflexió** Aspectes mes interessants i reptes, habilitats i coneixements adquirits
 **Gestió del temps** : planifica
+
+
 
 
 
@@ -149,35 +157,6 @@ npm install d3
 - Verificación de la compilación del proyecto
 - Comprobación del funcionamiento del servidor de desarrollo
 - Pruebas de los componentes implementados
-
-## Interacciones con la IA
-
-### Registro de Interacciones Significativas
-
-1. **Configuración Inicial del Proyecto**
-   - Selección de Vite como herramienta de construcción
-   - Configuración de la estructura del proyecto
-   - Resolución de problemas de importación de React
-
-2. **Desarrollo de Componentes**
-   - Creación del componente Button con estilos personalizados
-   - Implementación del SunburstChart con D3.js
-   - Integración de componentes en la página principal
-
-3. **Resolución de Problemas**
-   - Solución de errores de importación de React
-   - Configuración correcta de Vite
-   - Optimización de dependencias
-
-### Análisis del Código Generado
-- Los componentes siguen las mejores prácticas de React
-- Implementación de hooks para manejo de estado y efectos
-- Uso de D3.js para visualización de datos complejos
-
-### Proceso de Aprendizaje
-- Adaptación de conceptos de React para principiantes
-- Integración de bibliotecas externas (D3.js)
-- Implementación de patrones de diseño modernos
 
 ## Documentación Adicional
 
