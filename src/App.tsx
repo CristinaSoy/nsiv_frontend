@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { authAPI } from './services/api';
 import Auth from './components/Auth';
 import VerbHierarchy from './components/VerbHierarchy';
+import UsersList from './components/UsersList';
+import UserProfile from './components/UserProfile';
 import ApiTest from './components/ApiTest';
 import './App.css';
+
+type ActiveTab = 'verbs' | 'users' | 'profile' | 'test';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [showApiTest, setShowApiTest] = useState(true); // Mostrar test por defecto
+  const [activeTab, setActiveTab] = useState<ActiveTab>('verbs');
+  const [showApiTest, setShowApiTest] = useState(false); // Para desarrollo/debug
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem('access_token');
@@ -31,12 +36,11 @@ const App: React.FC = () => {
 
     checkAuth();
   }, []);
-
   const handleAuthSuccess = (token: string) => {
     localStorage.setItem('access_token', token);
     setIsAuthenticated(true);
+    setActiveTab('verbs'); // Resetear a la pestaña principal al hacer login
   };
-
   const handleLogout = async () => {
     try {
       await authAPI.logout();
@@ -45,16 +49,80 @@ const App: React.FC = () => {
     } finally {
       localStorage.removeItem('access_token');
       setIsAuthenticated(false);
+      setActiveTab('verbs'); // Resetear navegación al cerrar sesión
+    }
+  };
+
+  const renderContent = () => {
+    if (showApiTest) return <ApiTest />;
+    
+    switch (activeTab) {
+      case 'verbs':
+        return <VerbHierarchy />;
+      case 'users':
+        return <UsersList />;
+      case 'profile':
+        return <UserProfile />;
+      default:
+        return <VerbHierarchy />;
     }
   };
   if (loading) {
     return <div style={{ padding: '20px', textAlign: 'center' }}>🔄 Cargando...</div>;
-  }
-  return (
+  }  return (
     <div className="app">
       <header className="app-header">
-        <h1>🧪 Modo de Prueba - Configuración de APIs</h1>
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <h1>Visualizador de Verbos</h1>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          {/* Navegación principal - solo visible si está autenticado */}
+          {isAuthenticated && !showApiTest && (
+            <nav style={{ display: 'flex', gap: '8px', marginRight: '20px' }}>
+              <button 
+                onClick={() => setActiveTab('verbs')}
+                style={{ 
+                  background: activeTab === 'verbs' ? '#4ecdc4' : '#e0e0e0', 
+                  color: activeTab === 'verbs' ? 'white' : '#333',
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px'
+                }}
+              >
+                🌳 Verbos
+              </button>
+              <button 
+                onClick={() => setActiveTab('users')}
+                style={{ 
+                  background: activeTab === 'users' ? '#4ecdc4' : '#e0e0e0', 
+                  color: activeTab === 'users' ? 'white' : '#333',
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px'
+                }}
+              >
+                👥 Usuarios
+              </button>
+              <button 
+                onClick={() => setActiveTab('profile')}
+                style={{ 
+                  background: activeTab === 'profile' ? '#4ecdc4' : '#e0e0e0', 
+                  color: activeTab === 'profile' ? 'white' : '#333',
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px'
+                }}
+              >
+                👤 Mi Perfil
+              </button>
+            </nav>
+          )}
+          
+          {/* Botón de test para desarrollo */}
           <button 
             onClick={() => setShowApiTest(!showApiTest)}
             style={{ 
@@ -63,11 +131,14 @@ const App: React.FC = () => {
               border: 'none', 
               padding: '8px 16px', 
               borderRadius: '4px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontSize: '12px'
             }}
           >
             {showApiTest ? '❌ Cerrar Test' : '🧪 Test APIs'}
           </button>
+          
+          {/* Botón de logout */}
           {isAuthenticated && (
             <button onClick={handleLogout} className="logout-button">
               Cerrar Sesión
@@ -77,25 +148,12 @@ const App: React.FC = () => {
       </header>
 
       <main className="app-main">
-        {/* FORZAR MOSTRAR SOLO APITEST PARA DEPURACIÓN */}
-        <ApiTest />
+        {isAuthenticated ? (
+          renderContent()
+        ) : (
+          <Auth onAuthSuccess={handleAuthSuccess} />
+        )}
       </main>
-
-      {/* Debug info */}
-      <div style={{ 
-        position: 'fixed', 
-        bottom: '10px', 
-        right: '10px', 
-        background: '#f0f0f0', 
-        padding: '10px', 
-        borderRadius: '5px',
-        fontSize: '12px',
-        border: '1px solid #ccc'
-      }}>
-        <div>🔐 Autenticado: {isAuthenticated ? 'Sí' : 'No'}</div>
-        <div>🧪 Mostrando Test: {showApiTest ? 'Sí' : 'No'}</div>
-        <div>📱 Componente: APITEST (FORZADO)</div>
-      </div>
     </div>
   );
 };
