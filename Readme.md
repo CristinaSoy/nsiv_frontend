@@ -1,4 +1,4 @@
-## Requeriments académics
+## Requeriments acadèmics
 
 ### Desenvolupar
 
@@ -73,37 +73,103 @@ git clone [URL_DEL_REPOSITORIO]
 cd nsiv-frontend
 ```
 
-2) Instalar dependencias principales
+2) **Configurar variables de entorno (IMPORTANTE)**
+```bash
+# Copiar el archivo de ejemplo
+copy .env.example .env
+
+# Editar el archivo .env con la URL de tu API local
+# Ejemplo para XAMPP:
+REACT_APP_API_URL=http://localhost/ccardona_NO_ESBORRAR/Sprint5/nsiv_API/public/api
+```
+
+**URLs comunes segons el teu entorn:**
+- **XAMPP (port 80):** `http://localhost/[tu_carpeta]/Sprint5/nsiv_API/public/api`
+- **XAMPP (port 8080):** `http://localhost:8080/[tu_carpeta]/Sprint5/nsiv_API/public/api`
+- **Laravel Serve:** `http://localhost:8000/api`
+
+3) Instalar dependencias principals
 ```bash
 npm install react react-dom
 npm install @vitejs/plugin-react --save-dev
 ```
 
-3) Instalar D3.js para los gráficos
+4) Instalar D3.js per als gràfics
 ```bash
-npm install d3
+npm install D3
 ```
 
-4) Instalar todas las dependencias del proyecto
+5) Instalar totes les dependències del projecte
 ```bash
 npm install
 ```
 
-5) Levantar el servidor de desarrollo
+6) Llevar el servidor de desenvolupament
 ```bash
 npm run dev
 ```
 
-6) Verificar que la aplicación funciona en:
+7) Verificar que l'aplicació funciona a:
 http://localhost:5173
 
-### Notas importantes:
-- Asegúrate de que Node.js está instalado en el sistema
-- Si hay problemas con los permisos en Windows, ejecuta PowerShell como administrador
-- Si el servidor no inicia, verifica que el puerto 5173 no está en uso
-- Si hay errores de importación, verifica que todos los archivos tienen la extensión correcta (.jsx para archivos con JSX)
+### Notes importants:
+- Assegura't que Node.js està instal·lat al sistema
+- Si hi ha problemes amb els permisos a Windows, executa PowerShell com a administrador
+- Si el servidor no s'inicia, verifica que el port 5173 no està en ús
+- Si hi ha errors d'importació, verifica que tots els fitxers tenen l'extensió correcta (.jsx per fitxers amb JSX)
 
+## Configuració de Entorns
 
+### Variables de Entorn
+
+El projecte utilitza variables d'entorn per configurar la URL de l'API backend. Això permet que cada desenvolupador configuri el seu entorn local sense modificar el codi font.
+
+#### Configuració Inicial
+
+1. **Copia el fitxer d'exemple:**
+```bash
+copy .env.example .env
+```
+
+2. **Edita el fitxer `.env` amb la teva configuració local:**
+```properties
+REACT_APP_API_URL=http://localhost/tu_carpeta/Sprint5/nsiv_API/public/api
+```
+
+#### URLs per Entorn
+
+| Entorn | URL | Ús |
+|---------|-----|-----|
+| **XAMPP Local** | `http://localhost/ccardona_NO_ESBORRAR/Sprint5/nsiv_API/public/api` | Desenvolupament local amb XAMPP |
+| **XAMPP Puerto 8080** | `http://localhost:8080/carpeta/Sprint5/nsiv_API/public/api` | XAMPP en port alternatiu |
+| **Laravel Serve** | `http://localhost:8000/api` | Servidor de desenvolupament de Laravel |
+| **Producció** | `https://tu-dominio.com/api` | Servidor de producció |
+
+#### Verificar Configuració
+
+Per verificar que la teva URL és correcta:
+
+1. **Obre al navegador:** `[TU_URL]/groups`
+2. **Resultat esperat:** JSON amb dades o error d'autenticació (401)
+3. **Error 404:** La URL no és correcta
+
+#### Solució de Problemes
+
+**❌ Error: "Cannot find name 'process'"**
+- **Causa:** Problema amb variables d'entorn
+- **Solució:** Reinicia el servidor després de canviar `.env`
+
+**❌ Error: "Network Error" o "Failed to fetch"**
+- **Causa:** URL incorrecta o servidor backend no està corrent
+- **Solució:** 
+  1. Verifica que el backend està corrent
+  2. Comprova la URL al fitxer `.env`
+  3. Reinicia el servidor frontend
+
+**⚠️ Important:**
+- El fitxer `.env` **NO s'puja a Git** (està a .gitignore)
+- Cada desenvolupador ha de configurar el seu propi `.env`
+- Sempre reinicia el servidor després de canviar variables d'entorn
 
 ## Creacion del proyecto
 
@@ -141,43 +207,71 @@ npm install d3
 - `Button.jsx`: Componente reutilizable para botones con estilos personalizados
 - `SunburstChart.jsx`: Componente para visualización de datos jerárquicos usando D3.js
 
-7) Creación de páginas principales
-- `Home.jsx`: Página principal con la estructura básica de la aplicación
-- Implementación de la visualización de datos con el componente SunburstChart
+7) Creación de pàgines principals
+- `Home.jsx`: Página principal amb l'estructura bàsica de l'aplicació
+- Implementació de la visualització de dades amb el component SunburstChart
 
-8) Configuración de estilos
-- Creación de archivos CSS para cada componente
-- Implementación de estilos responsivos y modernos
+8) Configuració d'estils
+- Creació de fitxers CSS per a cada component
+- Implementació d'estils responsius i moderns
 
-9) Configuración del punto de entrada
-- Modificación de `main.jsx` para renderizar la aplicación React
-- Configuración del enrutamiento básico
+9) Configuració del punt d'entrada
+- Modificació de `main.jsx` per renderitzar l'aplicació React
+- Configuració de l'enrutament bàsic
 
-10) Pruebas iniciales
-- Verificación de la compilación del proyecto
-- Comprobación del funcionamiento del servidor de desarrollo
-- Pruebas de los componentes implementados
+10) Proves inicials
+- Verificació de la compilació del projecte
+- Comprovació del funcionament del servidor de desenvolupament
+- Proves dels components implementats
 
-## Documentación Adicional
+## Documentació Adicional
 
-### Interacciones con la IA
-Para ver el registro detallado de las interacciones con la IA y los problemas resueltos, consulta el archivo [IA_INTERACTIONS.md](./IA_INTERACTIONS.md).
+### Interaccions amb la IA
+Per veure el registre detallat de les interaccions amb la IA i els problemes resolts, consulta el fitxer [IA_INTERACTIONS.md](./IA_INTERACTIONS.md).
 
-### Resolución de Problemas Comunes
+### Resolució de Problemes Comuns
 
-#### Errores de Importación de React
-Si encuentras errores como:
+#### Errores de Configuració de API
+
+**❌ Error de autenticació 401**
+```
+Error al carregar perfil: Request failed with status code 401
+```
+**Solució:**
+1. Verifica que has fet login correctament
+2. Comprueba que el token se guardó en localStorage
+3. Usa el componente ApiTest per hacer login i obtenir un token vàlid
+
+**❌ Error de connexió "Network Error"**
+```
+Error al carregar perfil: Network Error
+```
+**Solució:**
+1. Verifica la URL en el teu fitxer `.env`
+2. Comprueba que el servidor backend està corrent
+3. Obre manualment la URL en el navegador: `[TU_URL]/groups`
+
+**❌ Error "Cannot find name 'process'"**
+```
+Cannot find name 'process'. Do you need to install type definitions for node?
+```
+**Solució:**
+1. Reinicia completament el servidor de desenvolupament
+2. Verifica que el teu fitxer `.env` existeix i té la variable `REACT_APP_API_URL`
+
+#### Errores de Importació de React
+Si trobes errors com:
 ```
 Failed to resolve import "react" from "src/pages/Home.jsx"
 ```
 
-Ejecuta los siguientes comandos:
+Executa els següents comandos:
 ```bash
 npm install react react-dom
 npm install @vitejs/plugin-react --save-dev
 ```
 
-Luego, asegúrate de que tu `vite.config.js` contenga:
+Després, assegura't que el teu `vite.config.js` contingui:
 ```javascript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -187,15 +281,46 @@ export default defineConfig({
 })
 ```
 
-#### Optimización de Dependencias
-Si necesitas optimizar las dependencias:
+#### Optimització de Dependències
+Si necessites optimitzar les dependències:
 ```bash
 npm run build
 ```
 
-## Endpoints de la API
+## Flujo de Trabajo del Equipo
 
-### Endpoints de Usuario
+### Para Nuevos Desarrolladores
+
+1. **Clona el repositorio**
+2. **Configura tu entorno local:**
+   ```bash
+   copy .env.example .env
+   # Edita .env con tu URL específica
+   ```
+3. **Instala dependencias:** `npm install`
+4. **Inicia el servidor:** `npm run dev`
+5. **Verifica la conexión amb la API** usando el componente ApiTest
+
+### Para Cambios en el Proyecto
+
+1. **Antes de hacer cambios:** Asegúrate de que tu `.env` está configurado correctamente
+2. **Al encontrar problemas de API:** Verifica primero la configuración de entorno
+3. **No subas archivos `.env`** al repositorio (están en .gitignore)
+4. **Documenta cambios** en las URLs o configuración en este README
+
+### Componente ApiTest
+
+El proyecto incluye un componente `ApiTest` que permet:
+- ✅ Probar la conexión con diferentes URLs de API
+- ✅ Hacer login y obtener tokens de autenticación
+- ✅ Verificar todos los endpoints
+- ✅ Diagnosticar problemas de configuración
+
+**Uso recomendado:** Antes de trabajar con otros componentes, usa ApiTest para verificar que tu configuración funciona correctamente.
+
+## Endpoints de l'API
+
+### Endpoints de Usuari
 
 | Método | Endpoint | Acción | Controlador | Testing |
 |--------|----------|---------|-------------|----------|
@@ -216,12 +341,12 @@ npm run build
 | GET | `api/groups/{id}` | Mostrar familias en un grupo | Group.show | GroupControllerTest.php |
 | GET | `api/families` | Mostrar todas las familias | Family.index | FamilyControllerTest.php |
 | GET | `api/families/{id}` | Mostrar subfamilias en una familia | Family.show | FamilyControllerTest.php |
-| GET | `api/subfamilies` | Mostrar todas las subfamilias | Subfamily.index | SubFamilyControllerTest.php |
+| GET | `api/subfamilies` | Mostrar todas las subfamilies | Subfamily.index | SubFamilyControllerTest.php |
 | GET | `api/subfamilies/{id}` | Mostrar verbos en una subfamilia | Subfamily.show | SubfamilyControllerTest.php |
 | GET | `api/verbs` | Mostrar todos los verbos | Verb.index | VerbControllerTest.php |
 | GET | `api/verbs/{id}` | Mostrar un verbo específico | Verb.show | VerbControllerTest.php |
 
 **Notas**:
-- Todos los endpoints requieren autenticación excepto `api/register` y `api/login`
-- Los endpoints de verbos devuelven datos filtrados según el nivel del usuario
-- Las respuestas incluyen colores en formato hexadecimal para la visualización en gráficos sunburst
+- Todos los endpoints requieren autenticación excepto `api/register` i `api/login`
+- Los endpoints de verbos devuelven datos filtrados segons el nivell del usuari
+- Les respostes inclouen colors en format hexadecimal per la visualització en gràfics sunburst
