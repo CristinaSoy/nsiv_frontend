@@ -20,6 +20,11 @@ interface SunburstData {
   colors: ColorInfo;
   value: number;
   children?: SunburstData[];
+  // Datos adicionales
+  description?: string;
+  comments?: string;
+  sample?: string;
+  total?: number;
 }
 
 interface HierarchyNode extends d3.HierarchyNode<SunburstData> {
@@ -32,11 +37,13 @@ interface HierarchyNode extends d3.HierarchyNode<SunburstData> {
 interface InteractiveSunburstProps {
   width?: number;
   height?: number;
+  centerText?: string;
 }
 
 const InteractiveSunburst: React.FC<InteractiveSunburstProps> = ({ 
   width = 800, 
-  height = 800 
+  height = 800,
+  centerText
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [navigation, setNavigation] = useState<NavigationState>({
@@ -83,14 +90,17 @@ const InteractiveSunburst: React.FC<InteractiveSunburstProps> = ({
 
     loadData();
   }, [navigation]);
-
   const loadGroups = async () => {
     const response = await verbsAPI.getGroups();
     const sunburstData: SunburstData[] = response.groups.map(group => ({
       name: group.name,
       id: group.id,
       colors: group.colors,
-      value: group.total
+      value: group.total,
+      description: group.description,
+      comments: group.comments,
+      sample: group.sample,
+      total: group.total
     }));
     setData(sunburstData);
   };
@@ -101,7 +111,11 @@ const InteractiveSunburst: React.FC<InteractiveSunburstProps> = ({
       name: family.name,
       id: family.id,
       colors: family.colors,
-      value: family.total
+      value: family.total,
+      description: family.description,
+      comments: family.comments,
+      sample: family.sample,
+      total: family.total
     }));
     setData(sunburstData);
   };
@@ -112,7 +126,11 @@ const InteractiveSunburst: React.FC<InteractiveSunburstProps> = ({
       name: subfamily.name,
       id: subfamily.id,
       colors: subfamily.colors,
-      value: subfamily.total
+      value: subfamily.total,
+      description: subfamily.description,
+      comments: subfamily.comments,
+      sample: subfamily.sample,
+      total: subfamily.total
     }));
     setData(sunburstData);
   };
@@ -270,17 +288,61 @@ const InteractiveSunburst: React.FC<InteractiveSunburstProps> = ({
         const angle = node.x1 - node.x0;
         const minAngle = 0.1; // Ángulo mínimo para mostrar texto
         return angle > minAngle ? d.data.name : '';
-      });
+      });    // Título y texto central mejorado
+    const centerGroup = svg.append("g");
+    
+    // Fondo circular para el texto central
+    centerGroup.append("circle")
+      .attr("r", radius * 0.15)
+      .attr("fill", "white")
+      .attr("stroke", "#ddd")
+      .attr("stroke-width", 2);
 
-    // Título central
-    svg.append("text")
+    // Título principal
+    centerGroup.append("text")
       .attr("text-anchor", "middle")
+      .attr("y", -10)
       .attr("font-size", "16px")
       .attr("font-weight", "bold")
       .attr("fill", "#333")
       .text(getTitleText());
 
-  }, [data, loading, navigation.level, width, height]);
+    // Texto descriptivo si se proporciona
+    if (centerText) {
+      const textLines = wrapText(centerText, 25);
+      const lineHeight = 12;
+      const startY = 10;
+
+      textLines.slice(0, 6).forEach((line, index) => { // Máximo 6 líneas
+        centerGroup.append("text")
+          .attr("text-anchor", "middle")
+          .attr("y", startY + (index * lineHeight))
+          .attr("font-size", "10px")
+          .attr("fill", "#666")
+          .text(line);
+      });
+    }
+
+  }, [data, loading, navigation.level, width, height, centerText]);
+
+  // Función para dividir texto en líneas
+  const wrapText = (text: string, maxCharsPerLine: number): string[] => {
+    const words = text.split(' ');
+    const lines: string[] = [];
+    let currentLine = '';
+
+    words.forEach(word => {
+      if ((currentLine + word).length <= maxCharsPerLine) {
+        currentLine += (currentLine ? ' ' : '') + word;
+      } else {
+        if (currentLine) lines.push(currentLine);
+        currentLine = word;
+      }
+    });
+
+    if (currentLine) lines.push(currentLine);
+    return lines;
+  };
 
   const getTitleText = (): string => {
     switch (navigation.level) {
