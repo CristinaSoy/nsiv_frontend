@@ -1,4 +1,6 @@
-##Prompt2: ##
+# Configuración inicial:
+
+## Prompt2: Datos de la API y configuración inicial.
 A continuación se detalla toda la info necesaria de una API para desarrollar el Frontend,
 Tu misión es realizar todos los pasos para desarrollar el frontend de esta api en el proyecto en donde estamos. 
 Revisa la información que se detalla más abajo y pídeme todo aquello que necesites para llevar a cabo tu misión.
@@ -476,9 +478,9 @@ const MyComponent = () => {
 };
 ```
 
-## Resumen de las actuaciones realizadas por Cursor
+## Resumen de las actuaciones realizadas por Cursor en respuesta al Prompt 2
 
-Te explico detalladamente lo que hemos implementado:
+Cursor implementa:
 
 1. **Estructura de Tipos (`src/types/api.types.ts`)**
    - Definimos las interfaces para todos los datos que vienen de la API:
@@ -533,7 +535,8 @@ Te explico detalladamente lo que hemos implementado:
    - Inicializa la aplicación React
    - Configura el modo estricto
 
-La aplicación sigue este flujo:
+##La aplicación sigue este flujo:
+
 1. El usuario llega a la aplicación y ve el formulario de login/registro
 2. Al autenticarse, se guarda el token en localStorage
 3. Se muestra la visualización de la jerarquía de verbos
@@ -545,3 +548,38 @@ Los datos fluyen así:
 API Backend → Servicios API → Componentes → D3.js → Visualización
 ```
 
+
+## Resultados tras implementación respuesta
+
+A diferencia de lo que la IA dice, la vista en localhost:5173 muestra dos botones "Cargar datos" y "Ver/Ocultar grafico" que no hacen nada.
+Se le pide que revise todos los componentes y resto de codigo para comprobar que todos los elementos necesarios para que funcione el frontend estan adecuadamente definidos
+
+## Resultados de la revisión
+después de muchas revisiones, creación, modificacion y eliminación de ficheros parece que Cursor ha entrado en un bucle. Descarto todos los cambios.
+
+## Corrección de errores con **VSC y Claude 4** modo agente
+Se le pide a Claude que corrija el problema. Para eso se le refirer al fichero IA_INTERACTIONS que muestra toda la info de la api para crear el frontend
+ 
+**Claude* encuentra el problema y lo soluciona de forma rápida y sin titubeos.
+
+## Configuracion de Axios y Testing de rutas.
+Claude revisa la configuración de Axios y a petición mía crea un ApiTest.tsx para probar todas las rutas.
+
+El acceso a las rutas autenticadas presenta incidencias. 
+Claude entra en bucle. 
+Le sugiero que revise el envío del token y le insto a que debuguee el flujo del token para detectar donde está el problema.
+
+Claude se muestra receptiva a mis propuestas, encuentra el problema 
+y lo soluciona ràpidamente.
+
+# Mejora de los datos iniciales
+
+Detecto que los datos procedentes de la API son deficientes. 
+Le pido a **Cursor** que vuelva a declarar los interfaces de acuerdo con los datos completos.
+Cuando le planteo cuestiones sobre sus outputs cambia de opinión continuamente.
+Finalmente le pido a **Copilot Claude** que genere las interfaces, cuando le pido explicaciones me las da sin cambiar de opinión. 
+
+
+
+
+# User endpoints

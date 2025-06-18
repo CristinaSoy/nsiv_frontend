@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-  // URL base de la API
-  baseURL: 'http://localhost/itacademy/Sprint5/nsiv_API/public/api',
+  // URL base de la API desde variable de entorno (Vite)
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost/itacademy/Sprint5/nsiv_API/public/api',
   
   // Headers por defecto
   headers: {
