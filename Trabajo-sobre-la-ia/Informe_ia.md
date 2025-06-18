@@ -1,6 +1,45 @@
-# Configuración inicial:
+# Introducción y planteamiento del proyecto
 
-## Prompt2: Datos de la API y configuración inicial.
+Para realizar la investigación sobre diferentes ias con el objetivo de elegir con cual iba desarrollar el proyecto he planteado el mismo prompt a 4 ias (Ver Prompt 1)
+- Agente de Cursor
+- Agente de Claude Sonnet 4 en VSC Copilot (cuota mensual de 10USD)
+- Agente entregado en React de Chat GPT 4 
+- Deepseek
+
+Rápidamente he descartado estos dos:
+- Chat GPT4: en vsc no permite acceder a agentes entrenados y me ha dado malos resultados en el pasado
+- Deepseek: por la dificultad de usarlo fuera del IDE
+
+He seleccionado Cursor y VSC con Claude por la facilidad de integrarlo en el códido y, en el caso de Claude por las buenas referencias de Bovilas.
+
+Durante el proyecto he alternado entre los dos IDEs -VSC y Cursor- con sus dos ias -Claude Sonnet 4 y otra inderminada (al menos yo no he conseguido que Cursor me dijera cuál es el modelo que usa)-.
+
+La alternancia ha seguido casi siempre el mismo flujo.
+1. Planteo petición a Cursor porque me daba la sensación de que tenía que ser más potente
+2. Cursor antes o después se mete en bucles de error y corrección sin salida.
+3. Descarto todos los cambios de Cursor y planteo la petición Claude
+4. Claude resuelve la peticion sin grandes dificultades e informando sobre sus pasos de manera que podía orientarla para solucionar algún atasco.
+
+Los retos planteados han sido, por tanto, saber cortar los bucles de error de la ia, y cambiar hacia aquella que mejor funciona. 
+
+**He aprendido** a trabajar en equipo con la ia, en este caso con Claude. A usarla con el agente activado en VSC, proporcionando el contexto necesario, a la vez que mantengo el control de lo que está pasando y puedo intervenir cuando es necesario.
+
+
+# Interacciones más relevantes con la Ia:
+## Prompt 1: contexto general
+Soy estudiante de fullstack.
+- He desarrollado mi primera API Rest en PHP 8.2, Laravel 12, Passport 13 y Spatie para la gestión de roles y permisos.
+- Ahora estoy realizando un ejercicio de clase en el que debo desarrollar el frontend de mi API para un hipotético client y necesito que me ayudes a desarrollar el frontend con React. 
+- Debes saber que nunca he trabajando con React por lo que empezaremos por que me expliques desde cero todos los pasos necesarios para realizar el proyecto, empezando por cómo instalarlo y también cómo renderizar el frontend de forma que pueda probarlo.
+Cuando hayamos superado este paso pasaremos al siguiente.
+- También debes saber que el ejercicio de clase consiste en, además de desarrollar el frontend tal como te he dicho, realizar una investigación sobre diferentes modelos de IA para ver cuál es más competente y eficaz para el desarrollo de código. Al realizar mi entrega, además del frontend, haré una presentación con mis conclusiones sobre los retos encontrados en el proyecto y cómo los hemos superado, la idoneidad de las respuestas recibidas y los resultados obtenidos con cada IA.
+Esto quiere decir que voy a iniciar esta misma conversación con este prompt con **Claude Sonnet 4** en VSC, con **Cursor** y con **DeepSeek**
+
+Sobre el proyecto:
+- En el readme veras los requisitos técnicos y académicos
+- El frontend deberá mostrar los datos obtenidos de los diferentes endpoints en graficos sunburts. Los colores se reciben de las respuestas json de cada endpoint.
+
+## Prompt2: Datos de la API y configuración inicial. Prompt obtenido de la ia
 A continuación se detalla toda la info necesaria de una API para desarrollar el Frontend,
 Tu misión es realizar todos los pasos para desarrollar el frontend de esta api en el proyecto en donde estamos. 
 Revisa la información que se detalla más abajo y pídeme todo aquello que necesites para llevar a cabo tu misión.
@@ -562,7 +601,7 @@ Se le pide a Claude que corrija el problema. Para eso se le refirer al fichero I
  
 **Claude* encuentra el problema y lo soluciona de forma rápida y sin titubeos.
 
-## Configuracion de Axios y Testing de rutas.
+## Configuracion de Axios y creación de ApiTest para Testing de rutas.
 Claude revisa la configuración de Axios y a petición mía crea un ApiTest.tsx para probar todas las rutas.
 
 El acceso a las rutas autenticadas presenta incidencias. 
@@ -572,17 +611,17 @@ Le sugiero que revise el envío del token y le insto a que debuguee el flujo del
 Claude se muestra receptiva a mis propuestas, encuentra el problema 
 y lo soluciona ràpidamente.
 
-# Mejora de los datos iniciales
+## Mejora de los datos iniciales
 
 Detecto que los datos procedentes de la API son deficientes. 
 Le pido a **Cursor** que vuelva a declarar los interfaces de acuerdo con los datos completos.
 Cuando le planteo cuestiones sobre sus outputs cambia de opinión continuamente.
-Finalmente le pido a **Copilot Claude** que genere las interfaces, cuando le pido explicaciones me las da sin cambiar de opinión. 
+Finalmente le pido a **Copilot Claude** que genere las interfaces, cuando le pido explicaciones me las da sin cambiar de opinión y de forma convincente.
 
 
 
 
-# User endpoints *VSC Claude sonet 4 modo Agente*
+## User endpoints *VSC Claude sonet 4 modo Agente*
 Copio el mensaje de error que da el localhost:5173 y le sugiero que revise el fichero ApiTest en el que todos los endpoints funcionan.
 Claude detecta varios errores que corrige, como sigue dando error, propone algunas opciones. Detecto que el problema es con la URL que es distinta en este equipo y está hardcodeada.
 Propongo definir la url mediante una variable. Claude hace varios cambios que siempre acaban hardcodeando la url.
@@ -592,3 +631,23 @@ Durante todo el proceso Claude informa de lo que está haciendo:
 - se informa leyendo los ficheros que necesita
 - informe de los cambios que ejecuta y donde
 - cuando detecta que ha cometido errores lo anuncia y informa de la corrección.
+
+
+## Graficos sunburst VSC Claude Sonnet 4 vs Cursor·
+Se ha pedido a las dos ias que realicen los gráficos sunburst y se les ha realizado preguntas sobre cómo y dónde se definen los gráficos.
+- Cursor: ha hecho caso omiso de las preguntas, se ha lanzado a programar y ha entrado en un bucle de errores y correcciones que tras una hora de ejecución no ha llegado a buen puerto.
+- Claude: ha respondido a mis preguntas y ha dedicado tiempo a estudiar el código existente antes de hacer una propuesta de usabilidad que yo he ajustado y que ha entendido perfectamente. A continuación ha hecho una propuesta de implementación que, tras mi aprobación, ha funcionado a la primera.
+A partir de esa primnera versión, hemos explorado otras opciones para mejorar el gráfico. Claude ha añadido sucesivos botones a la vista a medida que le pedía explorar otras opciones de gráficos generando, de este modo, una plataforma para perfeccionar el frontend y adaptarlo a las necesidades del proyecto.
+
+
+# Retos encontrados durante el proyecto
+
+Saber proporcionar el prompt adecuado con el contexto necesario.
+Saber detectar cuando la ia entra en bucle y abandonar el hilo infructuoso.
+Saber acompañar a la ia cuando es necesario intervenir para resolver problemas que por algún motivo ella no alcanza. (ejemplo del token en el login).
+Saber elegir la ia adecuada para las necesidades del momento.
+
+# Conclusiones
+
+A pesar de que en el inicio pensé en empezar con 4 ias para compararlas, descarté rápidamente a Deepseek y al agente entrenado en React de GPT4 por la ventaja enorme que suponen los agentes activos de Cursor y de VSC. 
+Durante el proyecto ha quedado demostrada la superioridad de Claude Sonnet 4
