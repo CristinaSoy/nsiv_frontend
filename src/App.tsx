@@ -8,19 +8,23 @@ import './App.css';
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [showApiTest, setShowApiTest] = useState(false);
-
+  const [showApiTest, setShowApiTest] = useState(true); // Mostrar test por defecto
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem('access_token');
+      console.log('Token encontrado:', token); // Debug
       if (token) {
         try {
           await authAPI.getCurrentUser();
           setIsAuthenticated(true);
+          console.log('Usuario autenticado'); // Debug
         } catch (error) {
+          console.log('Error de autenticación:', error); // Debug
           localStorage.removeItem('access_token');
           setIsAuthenticated(false);
         }
+      } else {
+        console.log('No hay token, usuario no autenticado'); // Debug
       }
       setLoading(false);
     };
@@ -43,14 +47,13 @@ const App: React.FC = () => {
       setIsAuthenticated(false);
     }
   };
-
   if (loading) {
-    return <div>Cargando...</div>;
+    return <div style={{ padding: '20px', textAlign: 'center' }}>🔄 Cargando...</div>;
   }
-
   return (
-    <div className="app">      <header className="app-header">
-        <h1>Visualizador de Verbos</h1>
+    <div className="app">
+      <header className="app-header">
+        <h1>🧪 Modo de Prueba - Configuración de APIs</h1>
         <div style={{ display: 'flex', gap: '10px' }}>
           <button 
             onClick={() => setShowApiTest(!showApiTest)}
@@ -71,15 +74,28 @@ const App: React.FC = () => {
             </button>
           )}
         </div>
-      </header>      <main className="app-main">
-        {showApiTest ? (
-          <ApiTest />
-        ) : isAuthenticated ? (
-          <VerbHierarchy />
-        ) : (
-          <Auth onAuthSuccess={handleAuthSuccess} />
-        )}
+      </header>
+
+      <main className="app-main">
+        {/* FORZAR MOSTRAR SOLO APITEST PARA DEPURACIÓN */}
+        <ApiTest />
       </main>
+
+      {/* Debug info */}
+      <div style={{ 
+        position: 'fixed', 
+        bottom: '10px', 
+        right: '10px', 
+        background: '#f0f0f0', 
+        padding: '10px', 
+        borderRadius: '5px',
+        fontSize: '12px',
+        border: '1px solid #ccc'
+      }}>
+        <div>🔐 Autenticado: {isAuthenticated ? 'Sí' : 'No'}</div>
+        <div>🧪 Mostrando Test: {showApiTest ? 'Sí' : 'No'}</div>
+        <div>📱 Componente: APITEST (FORZADO)</div>
+      </div>
     </div>
   );
 };

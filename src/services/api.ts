@@ -21,23 +21,49 @@ const api = axios.create({
   timeout: API_CONFIG.timeout
 });
 
-// Interceptor para añadir el token de autenticación
+// Interceptor para añadir el token de autenticación (solo para endpoints que lo requieren)
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem(API_CONFIG.auth.tokenKey);
-  if (token && config.headers) {
-    config.headers.Authorization = `${API_CONFIG.auth.tokenType} ${token}`;
+  // Endpoints públicos que NO requieren token
+  const publicEndpoints = ['/login', '/register'];
+  const isPublicEndpoint = publicEndpoints.some(endpoint => 
+    config.url?.includes(endpoint)
+  );
+  
+  // Solo agregar token si NO es un endpoint público
+  if (!isPublicEndpoint) {
+    const token = localStorage.getItem(API_CONFIG.auth.tokenKey);
+    if (token && config.headers) {
+      config.headers.Authorization = `${API_CONFIG.auth.tokenType} ${token}`;
+      console.log(`🔑 Token agregado a ${config.url}:`, `${API_CONFIG.auth.tokenType} ${token.substring(0, 20)}...`);
+    } else {
+      console.log(`⚠️ No hay token para ${config.url}`);
+    }
+  } else {
+    console.log(`🌐 Endpoint público detectado: ${config.url} - Sin token`);
   }
+  
   return config;
 });
 
 // Interceptor para manejo de respuestas y errores
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log(`✅ Respuesta exitosa de ${response.config.url}:`, response.status);
+    return response;
+  },
   (error) => {
+    console.error(`❌ Error en ${error.config?.url}:`, {
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      data: error.response?.data,
+      message: error.message
+    });
+    
     if (error.response?.status === 401) {
+      console.log('🔐 Error 401 - Limpiando token y redirigiendo...');
       localStorage.removeItem(API_CONFIG.auth.tokenKey);
       // Redirigir a login si es necesario
-      window.location.href = '/login';
+      // window.location.href = '/login';
     }
     return Promise.reject(error);
   }

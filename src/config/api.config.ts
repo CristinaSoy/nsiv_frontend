@@ -1,6 +1,6 @@
 export const API_CONFIG = {
   // URL base de la API
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'http://localhost/itacademy/Sprint5/nsiv_API/public/api',
   
   // Headers por defecto
   headers: {
