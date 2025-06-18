@@ -592,3 +592,9 @@ Durante todo el proceso Claude informa de lo que está haciendo:
 - se informa leyendo los ficheros que necesita
 - informe de los cambios que ejecuta y donde
 - cuando detecta que ha cometido errores lo anuncia y informa de la corrección.
+
+
+# Graficos sunburst VSC Claude Sonnet 4 vs Cursor·
+Se ha pedido a las dos ias que realicen los gráficos sunburst y se les ha realizado preguntas sobre como y donde se definen los gráficos.
+- Cursor: ha entrado en un bucle de errores y correcciones que tras media hora no ha llegado a buen puerto
+- Claude: se ha dedicado a estudiar el código existente antes de hacer una propuesta de usabilidad que yo he corregido y que ha entendido perfectamente. A continuación ha hecho una propuesta de implementacion que, tras mi aprobación, ha funcionado a la primera.

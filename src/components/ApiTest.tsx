@@ -1,11 +1,33 @@
 import React, { useState } from 'react';
-import { authAPI, usersAPI, verbsAPI } from '../services/api';
+import { authAPI, verbsAPI } from '../services/api';
+
+// Definir tipos para los resultados
+interface TestResult {
+  data?: any;
+  error?: string;
+  _success_message?: string;
+}
+
+interface TestResults {
+  [key: string]: TestResult;
+}
+
+// Helper para manejar errores de forma segura
+const getErrorMessage = (error: unknown): string => {
+  if (error instanceof Error) {
+    return error.message;
+  }
+  if (typeof error === 'string') {
+    return error;
+  }
+  return 'Error desconocido';
+};
 
 const ApiTest: React.FC = () => {
-  const [results, setResults] = useState<any>({});
+  const [results, setResults] = useState<TestResults>({});
   const [loading, setLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [customURL, setCustomURL] = useState('http://localhost/itacademy/Sprint5/nsiv_API/public/api');  const [loginData, setLoginData] = useState({
+  const [customURL, setCustomURL] = useState('http://localhost/itacademy/Sprint5/nsiv_API/public/api');const [loginData, setLoginData] = useState({
     email: 'test@example.com',
     password: '1234'
   });  const [registerData, setRegisterData] = useState({
@@ -36,9 +58,9 @@ const ApiTest: React.FC = () => {
             _success_message: '✅ Login exitoso! Token guardado. Ahora puedes probar otros endpoints.' 
           } 
         }));
-      }
-    } catch (err: any) {
-      setError(`Error en ${name}: ${err.message}`);
+      }    } catch (err: unknown) {
+      const errorMessage = getErrorMessage(err);
+      setError(`Error en ${name}: ${errorMessage}`);
       console.error(`Error testing ${name}:`, err);
       
       // Si es error de login, limpiar token
@@ -96,9 +118,7 @@ const ApiTest: React.FC = () => {
       `${customURL}/verbs`,
       `${customURL.replace('/api', '')}/api/groups`, // Sin /api duplicado
       `${customURL.replace('/public/api', '/api')}`, // Laravel serve
-    ];
-
-    const results = {};
+    ];    const results: { [key: string]: any } = {};
     
     for (const route of routesToTest) {
       try {
@@ -121,9 +141,9 @@ const ApiTest: React.FC = () => {
           const data = await response.json();
           results[route].data = data;
         }
-      } catch (error) {
+      } catch (error: unknown) {
         results[route] = {
-          error: error.message,
+          error: getErrorMessage(error),
           success: false
         };
       }
@@ -142,9 +162,7 @@ const ApiTest: React.FC = () => {
       { name: 'Register', url: `${customURL}/register`, method: 'POST' },
       // Algunos endpoints pueden ser públicos
       { name: 'Groups (sin auth)', url: `${customURL}/groups`, method: 'GET' },
-    ];
-
-    const results = {};
+    ];    const results: { [key: string]: any } = {};
     
     for (const route of publicRoutes) {
       try {
@@ -181,9 +199,9 @@ const ApiTest: React.FC = () => {
           const errorText = await response.text();
           results[route.name].error = errorText;
         }
-      } catch (error) {
+      } catch (error: unknown) {
         results[route.name] = {
-          error: error.message,
+          error: getErrorMessage(error),
           success: false,
           url: route.url
         };
@@ -406,11 +424,9 @@ const ApiTest: React.FC = () => {
           token_sent: `Bearer ${token}`,
           url_tested: `${customURL}/me`
         }
-      }));
-
-    } catch (error) {
+      }));    } catch (error: unknown) {
       console.error('❌ Error al probar token:', error);
-      setError(`Error probando token: ${error.message}`);
+      setError(`Error probando token: ${getErrorMessage(error)}`);
     } finally {
       setLoading(null);
     }
