@@ -837,53 +837,6 @@ Se ha proporcionado un archivo de tipos TypeScript completo (`types/api.types.ts
 ### Primera propuesta de la IA de interfaces y otros elementos:
 
 ```typescript
-// types/api.types.ts
-
-// Tipos de autenticación
-interface AuthResponse {
-  access_token: string;
-  token_type: string;
-  expires_at: string;
-}
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  level: number;
-}
-
-// Tipos para la estructura jerárquica
-interface Verb {
-  id: number;
-  name: string;
-  level: number;
-  // Otros campos específicos del verbo
-}
-
-interface Subfamily {
-  id: number;
-  name: string;
-  color: string;
-  total_verbs: number;
-  verbs?: Verb[];
-}
-
-interface Family {
-  id: number;
-  name: string;
-  color: string;
-  total_verbs: number;
-  subfamilies?: Subfamily[];
-}
-
-interface Group {
-  id: number;
-  name: string;
-  color: string;
-  total_verbs: number;
-  families?: Family[];
-}
 
 // Configuración de la API
 const API_CONFIG = {
