@@ -592,3 +592,6 @@ Durante todo el proceso Claude informa de lo que está haciendo:
 - se informa leyendo los ficheros que necesita
 - informe de los cambios que ejecuta y donde
 - cuando detecta que ha cometido errores lo anuncia y informa de la corrección.
+
+
+# Group sunburst
