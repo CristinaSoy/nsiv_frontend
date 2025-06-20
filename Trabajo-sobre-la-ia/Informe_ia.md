@@ -597,9 +597,9 @@ Se le pide que revise todos los componentes y resto de codigo para comprobar que
 después de muchas revisiones, creación, modificacion y eliminación de ficheros parece que Cursor ha entrado en un bucle. Descarto todos los cambios.
 
 ## Corrección de errores con **VSC y Claude 4** modo agente
-Se le pide a Claude que corrija el problema. Para eso se le refirer al fichero IA_INTERACTIONS que muestra toda la info de la api para crear el frontend
+Se le pide a Claude que corrija el problema. Para eso se le refiere al fichero [IA_INTERACTIONS.md](../IA_INTERACTIONS.md) que muestra toda la info de la api para crear el frontend
  
-**Claude* encuentra el problema y lo soluciona de forma rápida y sin titubeos.
+**Claude** encuentra el problema y lo soluciona de forma rápida y sin titubeos.
 
 ## Configuracion de Axios y creación de ApiTest para Testing de rutas.
 Claude revisa la configuración de Axios y a petición mía crea un ApiTest.tsx para probar todas las rutas.
@@ -631,7 +631,7 @@ Durante todo el proceso Claude informa de lo que está haciendo:
 - se informa leyendo los ficheros que necesita
 - informe de los cambios que ejecuta y donde
 - cuando detecta que ha cometido errores lo anuncia y informa de la corrección.
-
+Ver código copiado por Claude en [Claude creating user endpoints.md](./Claude%20creating%20user-endpoints.md)
 
 ## Graficos sunburst VSC Claude Sonnet 4 vs Cursor·
 Se ha pedido a las dos ias que realicen los gráficos sunburst y se les ha realizado preguntas sobre cómo y dónde se definen los gráficos.

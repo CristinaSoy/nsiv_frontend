@@ -10,7 +10,7 @@
 
 **Client frontend interactiu amb gràfics sunburst per visualitzar la jerarquia de verbs**
 
-[🧠 Informe sobre la IA](./Trabajo-sobre-la-ia/Informe_ia.md)
+[📱 Demo en viu](#) • [📖 Documentació](#taula-de-continguts) • [🚀 Instal·lació](#instal·lació-ràpida) • [🧠 Informe IA](./Trabajo-sobre-la-ia/Informe_ia.md)
 
 </div>
 
@@ -18,37 +18,38 @@
 
 ## 📋 Taula de continguts
 
-- [Sobre el projecte](#sobre-el-projecte)
+- [📋 Taula de continguts](#-taula-de-continguts)
+- [🎯 Sobre el projecte](#-sobre-el-projecte)
   - [Funcionalitats principals](#funcionalitats-principals)
   - [Requeriments acadèmics](#requeriments-acadèmics)
-- [🛠️ Tecnologies aplicades](#tecnologies-aplicades)
-- [🚀 Instal·lació ràpida](#installació)
+- [🛠️ Tecnologies aplicades](#️-tecnologies-aplicades)
+- [🚀 Instal·lació ràpida](#-instal·lació-ràpida)
   - [Prerequisits](#prerequisits)
   - [Configuració inicial](#configuració-inicial)
-- [⚙️ Configuració d'entorn](#configuració-dentorn)
+- [⚙️ Configuració d'entorn](#️-configuració-dentorn)
   - [Variables d'entorn](#variables-dentorn)
   - [URLs per entorn](#urls-per-entorn)
   - [Verificació de la configuració](#verificació-de-la-configuració)
-- [📊 Components de visualització](#components-de-visualització)
+- [📊 Components de visualització](#-components-de-visualització)
   - [InteractiveSunburst](#interactivesunburst)
   - [MultiLevelSunburst](#multilevelsunburst)
   - [HybridSunburst](#hybridsunburst)
-- [🔗 Endpoints de l'API](#endpoints-de-lapi)
+- [🔗 Endpoints de l'API](#-endpoints-de-lapi)
   - [Endpoints d'usuari](#endpoints-dusuari)
   - [Endpoints de verbs](#endpoints-de-verbs)
-- [🧠 Treball amb intel·ligència artificial](#treball-amb-intel·ligència-artificial)
+- [🧠 Treball amb intel·ligència artificial](#-treball-amb-intel·ligència-artificial)
   - [Models d'IA utilitzats](#models-dia-utilitzats)
   - [Procés de desenvolupament](#procés-de-desenvolupament)
-- [🔧 Resolució de problemes](#resolució-de-problemes)
+- [🔧 Resolució de problemes](#-resolució-de-problemes)
   - [Errors comuns d'API](#errors-comuns-dapi)
   - [Errors d'importació](#errors-dimportació)
-- [📁 Estructura del projecte](#estructura-del-projecte)
-- [Component ApiTest](#component_apitest)
-- [🤝 Contribució](#contribució)
+- [👥 Flux de treball de l'equip](#-flux-de-treball-de-lequip)
+- [📁 Estructura del projecte](#-estructura-del-projecte)
+- [🤝 Contribució](#-contribució)
 
 ---
 
-## Sobre el projecte
+## 🎯 Sobre el projecte
 
 Aquest projecte és una aplicació web frontend desenvolupada com a part del **Sprint 5 de l'IT Academy**, centrada en la creació d'un client React que consumeix una API Laravel per visualitzar verbs organitzats jeràrquicament.
 
@@ -71,11 +72,11 @@ L'aplicació ofereix múltiples formes de visualitzar la informació mitjançant
 - ✅ **Nivell 2**: Connexió frontend amb API - **REALITZAT**  
 - ⏳ **Nivell 3**: Dockerització de l'API o entrega de nivell 1
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Tecnologies aplicades
+## 🛠️ Tecnologies aplicades
 
 | Tecnologia | Versió | Funció |
 |------------|--------|--------|
@@ -94,11 +95,12 @@ L'aplicació ofereix múltiples formes de visualitzar la informació mitjançant
 | **Laravel Passport** | 13.x | Autenticació OAuth2 |
 | **Spatie Laravel Permission** | 6.x | Gestió de rols i permisos |
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Installació
+## 🚀 Instal·lació ràpida
+
 ### Prerequisits
 
 - **Node.js** (versió 18 o superior)
@@ -133,20 +135,16 @@ L'aplicació ofereix múltiples formes de visualitzar la informació mitjançant
    ```bash
    npm run dev
    ```
-5. **Clona el repositori de la API i activa el servidor artisan**
 
-   https://github.com/CristinaSoy/nsiv_API.git
-
-
-6. **Verificar el funcionament**
+5. **Verificar el funcionament**
    - Obre: `http://localhost:5173`
    - Usa el component **ApiTest** per verificar la connexió amb l'API
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Configuració d'entorn
+## ⚙️ Configuració d'entorn
 
 ### Variables d'entorn
 
@@ -183,10 +181,11 @@ El projecte utilitza variables d'entorn per configurar la URL de l'API backend. 
 
 > **⚠️ Important**: Sempre reinicia el servidor de desenvolupament després de canviar el fitxer `.env`
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
+
 ---
 
-## Components de visualització
+## 📊 Components de visualització
 
 L'aplicació ofereix tres tipus diferents de gràfics sunburst per visualitzar la jerarquia de verbs:
 
@@ -214,11 +213,11 @@ L'aplicació ofereix tres tipus diferents de gràfics sunburst per visualitzar l
   - Transicions suaus
   - Navegació optimitzada
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Endpoints de l'API
+## 🔗 Endpoints de l'API
 
 ### Endpoints d'usuari
 
@@ -251,11 +250,11 @@ L'aplicació ofereix tres tipus diferents de gràfics sunburst per visualitzar l
 > - Les dades estan filtrades segons el nivell de l'usuari autenticat
 > - Els endpoints inclouen informació rica (comentaris, descripcions, exemples)
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Treball amb intel·ligència artificial
+## 🧠 Treball amb intel·ligència artificial
 
 Aquest projecte ha estat desenvolupat amb l'assistència de múltiples models d'intel·ligència artificial, documentant el procés per complir amb els requeriments acadèmics.
 
@@ -278,11 +277,11 @@ Aquest projecte ha estat desenvolupat amb l'assistència de múltiples models d'
 
 > 📖 **Documentació completa**: Consulta el [registre detallat d'interaccions](./IA_INTERACTIONS.md) per veure el procés complet de desenvolupament amb IA.
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Resolució de problemes
+## 🔧 Resolució de problemes
 
 ### Errors comuns d'API
 
@@ -324,10 +323,35 @@ npm install @vitejs/plugin-react --save-dev
 npm run build
 ```
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
+## 👥 Flux de treball de l'equip
+
+### Per a nous desenvolupadors
+
+1. **Clona el repositori i configura l'entorn**
+   ```bash
+   git clone [URL_REPO]
+   cd nsiv_frontend
+   npm install
+   copy .env.example .env
+   # Edita .env amb la teva URL
+   ```
+
+2. **Verifica la connexió**
+   ```bash
+   npm run dev
+   # Usa el component ApiTest per verificar l'API
+   ```
+
+### Per a canvis en el projecte
+
+- ✅ **Abans de fer canvis**: Verifica que `.env` està configurat correctament
+- ✅ **En trobar problemes d'API**: Comprova primer la configuració d'entorn
+- ❌ **No pugis fitxers `.env`**: Estan a .gitignore per seguretat
+- 📝 **Documenta canvis**: Actualitza aquest README si cal
 
 ### Component ApiTest
 
@@ -339,11 +363,11 @@ El component `ApiTest` inclòs permet:
 
 > **💡 Recomanació**: Usa sempre ApiTest abans de treballar amb altres components
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Estructura del projecte
+## 📁 Estructura del projecte
 
 ```
 nsiv_frontend/
@@ -371,20 +395,18 @@ nsiv_frontend/
 │   ├── main.tsx                # Punt d'entrada de l'aplicació
 │   └── index.css               # Estils globals
 ├── 📁 Trabajo-sobre-la-ia/     # Documentació IA
-│   ├── IA_INTERACTIONS.md      # Primeres sessions amb la IA
-│   ├── Informe_ia.md           # Informe complet sobre ús d'IA
-│   └── Claude_creating_user_endoints
+│   └── Informe_ia.md          # Informe complet sobre ús d'IA
 ├── package.json                # Dependències i scripts
 ├── vite.config.ts             # Configuració de Vite
 ├── tsconfig.json              # Configuració TypeScript
 └── README.md                  # Aquest fitxer
 ```
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 ---
 
-## Contribució
+## 🤝 Contribució
 
 Si vols contribuir a aquest projecte:
 
@@ -414,10 +436,10 @@ Si vols contribuir a aquest projecte:
 
 <div align="center">
 
-**🎓 Projecte desenvolupat per Cristina Cardona. All rights reserved**
+**🎓 Projecte desenvolupat per a l'IT Academy - Sprint 5**
 
 *Amb col·laboració d'intel·ligència artificial per l'aprenentatge i desenvolupament*
 
-[⬆️ Tornar a dalt](#)
+[⬆️ Tornar a dalt](#frontend-nsiv---visualitzador-de-verbos-jerárquic)
 
 </div>
